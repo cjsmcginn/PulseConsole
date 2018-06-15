@@ -47,18 +47,24 @@ namespace PulseConsole.Services
                 while (rdr.Read())
                 {
                     var r = new MembershipInfo();
-                    r.MemberID = rdr.GetInt32(0);
-                    r.FirstName = rdr.GetString(1);
-                    r.LastName = rdr.GetString(2);
-                    if (rdr[3] != null)
+                    if (!rdr.IsDBNull(0))
+                        r.MemberID = rdr.GetInt32(0);
+                    if (!rdr.IsDBNull(1))
+                        r.FirstName = rdr.GetString(1);
+                    if (!rdr.IsDBNull(2))
+                        r.LastName = rdr.GetString(2);
+                    if (!rdr.IsDBNull(3))
                         r.MostSevereDiagnosisID = rdr.GetInt32(3);
-                    r.MostSevereDiagnosticDescription = rdr.GetString(4);
-                    if (rdr[5] != null)
+                    if(!rdr.IsDBNull(4))
+                        r.MostSevereDiagnosticDescription = rdr.GetString(4);
+                    if (!rdr.IsDBNull(5))
                         r.CategoryID = rdr.GetInt32(5);
-                    r.CategoryDescription = rdr.GetString(6);
-                    if (rdr[7] != null)
+                    if(!rdr.IsDBNull(6))
+                        r.CategoryDescription = rdr.GetString(6);
+                    if (!rdr.IsDBNull(7))
                         r.CategoryScore = rdr.GetInt32(7);
-                    r.IsMostSevereCategory = rdr.GetInt32(8);
+                    if (!rdr.IsDBNull(8))
+                        r.IsMostSevereCategory = rdr.GetInt32(8);
                     result.Add(r);
                    
                  
